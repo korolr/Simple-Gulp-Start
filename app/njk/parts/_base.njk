@@ -1,12 +1,12 @@
-
-	
-
-
+{% set company = "My random company" %}
+	{% if not(title) %}
+{% set title = "Default title" %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Default title</title>
+	<title>{{ title }}</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,15 +14,14 @@
 
 </head>
 <body>
-    <p>4</p>
+    {% include "parts/header.njk" %}
 
 
-    
-<p>test</p>
+    {% block content %}
+    {% endblock %}
 
 
-
-    <p>6</p>
+    {% include "parts/footer.njk" %}
 	<link rel="stylesheet" href="css/main.min.css">
 	<script src="bundle/app.js"></script>
 </body>
