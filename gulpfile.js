@@ -14,13 +14,15 @@ var gulp = require("gulp"),
   babelify = require("babelify"),
   source = require("vinyl-source-stream"),
   buffer = require("vinyl-buffer"),
-  plumber = require("gulp-plumber");
+  plumber = require("gulp-plumber"),
+  htmlbeautify = require("gulp-html-beautify"),
+  imagemin = require("gulp-imagemin");
 
 // Сервер и автообновление страницы Browsersync
 gulp.task("browser-sync", function() {
   browserSync({
     server: {
-      baseDir: "app"
+      baseDir: "out"
     },
     notify: false
     // tunnel: true,
@@ -37,9 +39,18 @@ gulp.task("nunjucks", function() {
         path: ["app/njk"]
       })
     )
-    .pipe(gulp.dest("app"))
+    .pipe(htmlbeautify())
+    .pipe(gulp.dest("out"))
     .pipe(browserSync.reload({ stream: true }));
 });
+
+gulp.task("img", () =>
+  gulp
+    .src("app/img/*")
+    .pipe(plumber())
+    .pipe(imagemin())
+    .pipe(gulp.dest("out/img"))
+);
 
 // Минификация пользовательских скриптов проекта и JS библиотек в один файл
 gulp.task("js", function() {
@@ -49,7 +60,8 @@ gulp.task("js", function() {
     .on("error", console.error.bind(console))
     .pipe(source("app.js"))
     .pipe(buffer())
-    .pipe(gulp.dest("app/bundle"));
+    .pipe(gulp.dest("out/bundle"))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 gulp.task("sass", function() {
@@ -60,15 +72,20 @@ gulp.task("sass", function() {
     .pipe(rename({ suffix: ".min", prefix: "" }))
     .pipe(autoprefixer(["last 15 versions"]))
     .pipe(cleanCSS()) // Опционально, закомментировать при отладке
-    .pipe(gulp.dest("app/css"))
+    .pipe(gulp.dest("out/css"))
     .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task("watch", ["sass", "js", "browser-sync", "nunjucks"], function() {
-  gulp.watch("app/njk/**/*.njk", ["nunjucks"]);
-  gulp.watch("app/sass/**/*.sass", ["sass"]);
-  gulp.watch(["libs/**/*.js", "app/js/**/*.js"], ["js"]);
-  gulp.watch("app/**/*.html", browserSync.reload);
-});
+gulp.task(
+  "watch",
+  ["sass", "js", "browser-sync", "nunjucks", "img"],
+  function() {
+    gulp.watch("app/njk/**/*.njk", ["nunjucks"]);
+    gulp.watch("app/img/*", ["img"]);
+    gulp.watch("app/sass/**/*.sass", ["sass"]);
+    gulp.watch(["libs/**/*.js", "app/js/**/*.js"], ["js"]);
+    gulp.watch("out/**/*.html", browserSync.reload);
+  }
+);
 
 gulp.task("default", ["watch"]);

@@ -1,4 +1,4 @@
 var test = function() {
-  console.log(2);
+  console.log(5);
 };
 export default test;

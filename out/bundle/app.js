@@ -20,7 +20,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var test = function test() {
-  console.log(2);
+  console.log(5);
 };
 
 var _default = test;
