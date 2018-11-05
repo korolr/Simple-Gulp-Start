@@ -46,7 +46,7 @@ gulp.task("nunjucks", function() {
 
 gulp.task("img", () =>
   gulp
-    .src("app/img/*")
+    .src("app/img/**/*")
     .pipe(plumber())
     .pipe(imagemin())
     .pipe(gulp.dest("out/img"))
