@@ -21,7 +21,7 @@ module.exports = {
   rules: {
     quotes: ["error", "double"],
     "linebreak-style": "off", // Неправильно работает в Windows.
-
+    "comma-dangle": "error",
     "arrow-parens": "off", // Несовместимо с prettier
     "object-curly-newline": "off", // Несовместимо с prettier
     "no-mixed-operators": "off", // Несовместимо с prettier
@@ -47,6 +47,7 @@ module.exports = {
     "react/no-did-mount-set-state": "off",
     "react/no-unused-prop-types": "off", // Это всё ещё работает нестабильно
     "react/jsx-one-expression-per-line": "off",
+    "operator-linebreak": "off",
 
     "jsx-a11y/anchor-is-valid": [
       "error",
