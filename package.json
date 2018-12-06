@@ -1,10 +1,12 @@
 {
   "name": "simple-gulp-start",
   "version": "1.0.0",
-  "description": "Simple Gulp Start Template (Sass, Browsersync, Uglify, cleanCSS, Autoprefixer)",
+  "description": "Simple Gulp Start Template (scss, Browsersync, Uglify, cleanCSS, Autoprefixer)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --debug app/js/",
+    "lint:write": "eslint --debug app/js/ --fix",
+    "prettier": "prettier --write app/js/**/*.js"
   },
   "author": "korolr",
   "license": "ISC",
@@ -12,6 +14,16 @@
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "browser-sync": "^2.24.4",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-jest-enzyme": "^6.0.2",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jest": "^21.18.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^8.0.0",
@@ -23,14 +35,40 @@
     "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^4.0.1",
-    "gulp-uglify": "^3.0.0"
+    "gulp-uglify": "^3.0.0",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
+    "stylelint-config-prettier": "^4.0.0",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-order": "^2.0.0"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
+    "eslint": "^5.9.0",
     "gulp-html-beautify": "^1.0.1",
     "gulp-html-prettify": "0.0.1",
+    "stylelint-config-standard": "^18.2.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:write",
+      "prettier --write",
+      "git add"
+    ],
+    "*.css": [
+      "prettier --write",
+      "stylelint --fix --config ./.stylelintrc-format",
+      "git add"
+    ]
   }
 }

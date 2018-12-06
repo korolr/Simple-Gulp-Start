@@ -1,7 +1,9 @@
 import Test from "./test";
 
-var newOne = () => {
-  alert(7);
+const newOne = () => {
+  console.log(7);
 };
 
 Test();
+
+newOne();
