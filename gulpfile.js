@@ -66,7 +66,7 @@ gulp.task("js", function() {
 
 gulp.task("sass", function() {
   return gulp
-    .src("app/sass/**/*.sass")
+    .src("app/scss/**/*.scss")
     .pipe(plumber())
     .pipe(sass({ outputStyle: "expand" }).on("error", notify.onError()))
     .pipe(rename({ suffix: ".min", prefix: "" }))
@@ -82,7 +82,7 @@ gulp.task(
   function() {
     gulp.watch("app/njk/**/*.njk", ["nunjucks"]);
     gulp.watch("app/img/*", ["img"]);
-    gulp.watch("app/sass/**/*.sass", ["sass"]);
+    gulp.watch("app/scss/**/*.scss", ["sass"]);
     gulp.watch(["libs/**/*.js", "app/js/**/*.js"], ["js"]);
     gulp.watch("out/**/*.html", browserSync.reload);
   }
