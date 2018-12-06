@@ -16,7 +16,7 @@
     "browser-sync": "^2.24.4",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "eslint": "^4.19.1",
+    "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-jest-enzyme": "^6.0.2",
     "eslint-plugin-babel": "^5.1.0",
@@ -41,18 +41,17 @@
     "prettier": "^1.15.3",
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-recommended": "^2.1.0",
-    "stylelint-order": "^2.0.0"
-  },
-  "dependencies": {
+    "stylelint-order": "^2.0.0",
     "babel-eslint": "^10.0.1",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
-    "eslint": "^5.9.0",
     "gulp-html-beautify": "^1.0.1",
     "gulp-html-prettify": "0.0.1",
     "stylelint-config-standard": "^18.2.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
+  },
+  "dependencies": {
   },
   "husky": {
     "hooks": {
@@ -67,7 +66,7 @@
     ],
     "*.css": [
       "prettier --write",
-      "stylelint --fix --config ./.stylelintrc-format",
+      "stylelint ./app/scss/ --config .stylelintrc --fix",
       "git add"
     ]
   }

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var gulp = require("gulp"),
   gutil = require("gulp-util"),
   sass = require("gulp-sass"),
@@ -22,9 +24,9 @@ var gulp = require("gulp"),
 gulp.task("browser-sync", function() {
   browserSync({
     server: {
-      baseDir: "out"
+      baseDir: "out",
     },
-    notify: false
+    notify: false,
     // tunnel: true,
     // tunnel: "projectmane", //Demonstration page: http://projectmane.localtunnel.me
   });
@@ -36,7 +38,7 @@ gulp.task("nunjucks", function() {
     .pipe(plumber())
     .pipe(
       nunjucksRender({
-        path: ["app/njk"]
+        path: ["app/njk"],
       })
     )
     .pipe(htmlbeautify())
