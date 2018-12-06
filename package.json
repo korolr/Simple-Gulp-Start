@@ -64,7 +64,7 @@
       "prettier --write",
       "git add"
     ],
-    "*.css": [
+    "*.scss": [
       "prettier --write",
       "stylelint ./app/scss/ --config .stylelintrc --fix",
       "git add"
