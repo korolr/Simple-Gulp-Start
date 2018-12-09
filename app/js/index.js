@@ -1,3 +1,4 @@
+import "../scss/main.scss";
 import Test from "./test";
 
 const newOne = () => {
