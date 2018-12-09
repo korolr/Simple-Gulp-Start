@@ -1,7 +1,7 @@
 {
-  "name": "simple-gulp-start",
+  "name": "korolr-starter",
   "version": "1.0.0",
-  "description": "Yandex task 2",
+  "description": "Gulp 4 and webpack",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --debug app/js/",
